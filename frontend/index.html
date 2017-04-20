@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app='peopleList' lang="en">
+    <head>
+        <title>People List</title>
+        <meta charset="UTF-8">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Revalia" rel="stylesheet">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="container-fluid row" ng-controller="peopleController as vm">
+            <h2 class="col-md-12" >People List</h2>
+            <table class="col-md-6 col-md-offset-3">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">Id</th>
+                        <th class="col-md-1">Name</th>
+                        <th class="col-md-1">Age</th>
+                        <th class="col-md-1">Likes JS</th>
+                        <th class="col-md-1">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in vm.users">
+                        <td class="col-md-1">{{user._id}}</td>
+                        <td class="col-md-1">{{user.name}}</td>
+                        <td class="col-md-1">{{user.age}}</td>
+                        <td class="col-md-1">{{user.js}}</td>
+                        <td class="col-md-1"><button ng-click="vm.delete(user._id)">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form class="col-md-8 col-md-offset-2" novalidate name='userDetails' ng-submit='vm.submitForm(userDetails.$valid)'>
+                <label for="name">Users Name</label>
+                <input type="text" id="name" placeholder="Name" ng-model="vm.user.name" required>
+                <label for="age">Users Age</label>
+                <input type="text" id="age" placeholder="Age" ng-model="vm.user.age" required>
+                <label for="likeJS">Does the user like JavaScript?</label>
+                <select id="likeJS" ng-model="vm.user.js" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <input type="submit">
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="js/main.js"></script>
+        <script src="js/services/data.js"></script>
+        <script src="js/controllers/peopleController.js"></script>
+    </body>
+</html>
